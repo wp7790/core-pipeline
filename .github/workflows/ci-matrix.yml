@@ -1,0 +1,19 @@
+name: CI - All Apps
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "apps/**"
+      - ".github/workflows/**"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        app: [hello-api]       # add more apps here later
+    uses: ./.github/workflows/build-and-push-docker.yml
+    with:
+      app: ${{ matrix.app }}
+      image_name: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.app }}
+      push_tag: ${{ github.sha }}
