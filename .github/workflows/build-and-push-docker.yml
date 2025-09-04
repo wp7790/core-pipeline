@@ -23,6 +23,11 @@ on:
         description: "Tag to push (e.g., latest or sha)"
         required: true
         type: string
+      secrets:
+        DOCKERHUB_USERNAME:
+          required: true
+        DOCKERHUB_TOKEN:
+         required: true
 
 jobs:
   build:
